@@ -1,18 +1,40 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <b-row>
+      <b-col md="8" sm="12" id="holder">
+        <UserFileNotCreatedComponent v-if="!isPath"/>
+        <h2>Dostępne role:</h2>
+        <RolesComponent />
+        <h2>Dostępne szkoły i klasy:</h2>
+        <SchoolsComponent />
+      </b-col>
+    </b-row>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import RolesComponent from '@/components/RolesComponent.vue'
+import SchoolsComponent from '@/components/SchoolsComponent.vue'
+import NavComponent from '@/components/NavComponent.vue'
+import UserFileNotCreatedComponent from '@/components/UserFileNotCreatedComponent.vue'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
-    HelloWorld
+    RolesComponent,
+    SchoolsComponent,
+    UserFileNotCreatedComponent
+  },
+  data() {
+    return {
+      isPath: this.$store.getters.userFile
+    }
   }
 }
 </script>
+<style>
+  #holder {
+    margin: 0 auto;
+    margin-top: 16px;
+  }
+</style>
